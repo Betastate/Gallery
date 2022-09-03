@@ -5,7 +5,7 @@ const Gallery = () => {
         return;
     }
 
-    const imagserWrapperInner = document.querySelector('.gallery-images-inner');
+    const imagesWrapperInner = document.querySelector('.gallery-images-inner');
 
     const panel = document.querySelector('.gallery-panel');
     const panelImage = panel.querySelector('.panel-image-preview .content-image');
@@ -43,7 +43,7 @@ const Gallery = () => {
             method: 'POST',
             body: formData
         })
-            .then((response) => { 
+            .then((response) => {
                 response.json().then(res => {
                     console.log(res.ok);
                     //append new image
@@ -55,8 +55,10 @@ const Gallery = () => {
                     newImg.src = res.response;
 
                     newItem.appendChild(newImg);
-                    imagserWrapperInner.prepend(newItem);
-                }); 
+                    imagesWrapperInner.prepend(newItem);
+
+                    numImages++;
+                });
             })
             .catch((err) => { /* Error. Inform the user */ })
     };
@@ -93,6 +95,64 @@ const Gallery = () => {
         handleFiles(imagesInput.files);
     });
 
+
+    //*******************   
+    //Load More
+    //*******************
+    // const maxImages
+    let maxImages = parseInt(imagesWrapper.dataset.count);
+    let imagesLimit = parseInt(imagesWrapper.dataset.chunks);
+    let imagesOffset = 0;
+    let numImages = 8;
+
+    const loadMoreBtn = imagesWrapper.querySelector('.gallery-load-more .button');
+
+    const fetchImages = (limit, offset) => {
+        let url = '/inc/fetch.php';
+        let formData = new FormData();
+
+        formData.append('limit', limit);
+        formData.append('offset', offset);
+
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then((response) => {
+                response.json().then(res => {
+
+                    if (!res.images) {
+                        return;
+                    }
+
+                    res.images.forEach(image => {
+                        //append new image
+                        let newItem = document.createElement('DIV');
+                        newItem.className = 'content-item';
+                        newItem.dataset.url = image.url;
+
+                        let newImg = document.createElement('IMG')
+                        newImg.src = image.url;
+
+                        newItem.appendChild(newImg);
+                        imagesWrapperInner.appendChild(newItem);
+
+                        numImages++;
+
+                        if (numImages >= maxImages) {
+                            loadMoreBtn.parentNode.remove();
+                        }
+                    });
+
+                });
+            })
+            .catch((err) => { /* Error. Inform the user */ })
+    };
+
+    loadMoreBtn.addEventListener('click', () => {
+        imagesOffset += imagesLimit;
+        fetchImages(imagesLimit, imagesOffset);
+    });
 };
 
 window.addEventListener('load', () => {

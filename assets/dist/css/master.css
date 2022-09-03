@@ -213,8 +213,8 @@ object {
 
 .gallery-images-inner {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1rem;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none; }

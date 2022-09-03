@@ -1,7 +1,7 @@
 .gallery-images-inner {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1rem;
     user-select: none;
 
     .content-item {
