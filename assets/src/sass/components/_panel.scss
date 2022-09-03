@@ -6,7 +6,7 @@
 
     padding: 2.5rem 1.5rem;
     background: #dadada;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
 
     .panel-image-preview {
         position: relative;
@@ -16,6 +16,28 @@
         img {
             width: 100%;
             height: auto;
+        }
+    }
+
+    .panel-separator {
+        width: 100%;
+        height: 2px;
+        background: var(--color-primary);
+        margin-top: 1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .panel-add-images {
+        align-self: flex-start;
+        margin-top: 2.5rem;
+    }
+
+    .panel-load-images {
+        margin-bottom: 1.5rem;
+
+        .content-item {
+            display: flex;
+            align-items: center;
         }
     }
 

@@ -1,9 +1,9 @@
 <?php
     class DB{
         private $dbhost = 'localhost';
-        private $dbname = 'name';
-        private $dbuser = 'user';
-        private $dbpass = 'password';
+        private $dbname = 'gallery';
+        private $dbuser = 'gallery';
+        private $dbpass = 'gallery';
 
         private $mysqli;
         function __construct(){
