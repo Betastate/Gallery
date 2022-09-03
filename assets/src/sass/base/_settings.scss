@@ -1,0 +1,19 @@
+// Global settings
+
+$breakpoint-mobile: 40em;
+$breakpoint-small: 	50em;
+$breakpoint-medium: 60em;
+$breakpoint-large: 	75em;
+
+:root {
+    
+    --color-text: #000;
+    --color-base: #fff;
+
+    --color-primary: #fcef34;
+    --color-secondary: #3553de;
+
+    --font-primary: 'Roboto', sans-serif;
+    --font-secondary: 'Montserrat', sans-serif;
+
+}

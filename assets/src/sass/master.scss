@@ -1,0 +1,22 @@
+// The master CSS file.
+// ----------------------------------------------------------------------------
+// One css to rule them all, One css to find them; One css to bring them all
+// and in the darkness bind them.
+// The order of files include is important. Dont change it.
+
+
+// All general settings and utils
+@import "base/settings";
+@import "base/general";
+@import "base/sections";
+
+// Separating the largest parts of the site in specific files.
+@import "layout/general";
+@import "layout/header";
+
+
+
+@import "components/gallery";
+@import "components/images";
+@import "components/panel";
+@import "components/buttons";
