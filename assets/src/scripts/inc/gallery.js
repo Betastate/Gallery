@@ -134,7 +134,7 @@ const Gallery = () => {
     let maxImages = parseInt(imagesWrapper.dataset.count);
     let imagesLimit = parseInt(imagesWrapper.dataset.chunks);
     let imagesOffset = 0;
-    let numImages = 8;
+    let numImages = 16;
 
     const loadMoreBtn = imagesWrapper.querySelector('.gallery-load-more .button');
 

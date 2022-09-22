@@ -5,15 +5,15 @@ include_once './inc/db.php';
 
 $db = new DB();
 
-$chunkSize = 8;
+$chunkSize = 16;
 
-$images = $db->select("SELECT url,thumbnail,time_added FROM images ORDER BY id DESC LIMIT 8;");
+$images = $db->select("SELECT url,thumbnail,time_added FROM images ORDER BY id DESC LIMIT ".$chunkSize.";");
 
 $imagesCount = $db->select("SELECT Count(id) as count FROM images;",true)['count'];
 
 ?>
 
-<div class="gallery-images" data-count="<?php echo $imagesCount; ?>" data-chunks="8">
+<div class="gallery-images" data-count="<?php echo $imagesCount; ?>" data-chunks="<?php echo $chunkSize; ?>">
     <?php if (empty($images)) : ?>
         <h3 class="gallery-empty">No images added</h3>
     <?php endif; ?>
