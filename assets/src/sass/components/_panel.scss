@@ -1,5 +1,6 @@
 .gallery-panel {
-    position: relative;
+    position: sticky;
+    top: 1rem;
 
     display: flex;
     flex-direction: column;

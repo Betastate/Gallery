@@ -266,7 +266,8 @@ object {
   margin-top: 2.5rem; }
 
 .gallery-panel {
-  position: relative;
+  position: sticky;
+  top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
