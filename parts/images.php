@@ -7,7 +7,7 @@ $db = new DB();
 
 $chunkSize = 16;
 
-$images = $db->select("SELECT url,thumbnail,time_added FROM images ORDER BY id DESC LIMIT ".$chunkSize.";");
+$images = $db->select("SELECT id,url,thumbnail,time_added FROM images ORDER BY id DESC LIMIT ".$chunkSize.";");
 
 $imagesCount = $db->select("SELECT Count(id) as count FROM images;",true)['count'];
 
@@ -20,7 +20,7 @@ $imagesCount = $db->select("SELECT Count(id) as count FROM images;",true)['count
     <div class="gallery-images-inner">
         <?php if (!empty($images)) : ?>
             <?php foreach($images as $image) : ?>
-                <div class="content-item" data-url="/<?php echo $image['url']; ?>">
+                <div class="content-item" data-id="<?php echo $image['id']; ?>" data-url="/<?php echo $image['url']; ?>">
                     <img src="/<?php echo $image['thumbnail']; ?>" alt="">
                 </div>
             <?php endforeach; ?>

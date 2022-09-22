@@ -5,6 +5,11 @@
         <img class="content-image" src="" alt="">
     </div>
 
+    <div class="panel-image-controls is-hidden">
+        <div class="panel-image-name">...</div>
+        <div class="panel-image-delete">Delete</div>
+    </div>
+
     <div class="panel-separator"></div>
 
     <h4 class="panel-prompt">Upload images</h4>

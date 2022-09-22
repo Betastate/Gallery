@@ -11,6 +11,10 @@ const Gallery = () => {
     const panelImage = panel.querySelector('.panel-image-preview .content-image');
     const panelLoading = panel.querySelector('.panel-load-images');
 
+    const panelControls = panel.querySelector('.panel-image-controls');
+    const panelImageName = panelControls.querySelector('.panel-image-name');
+    const panelImageDelete = panelControls.querySelector('.panel-image-name');
+
 
     const imagesInput = document.querySelector('#images-input');
     const galleryEmpty = document.querySelector('.gallery-empty');
@@ -24,6 +28,10 @@ const Gallery = () => {
         }
         currentImage = image;
         currentImage.classList.add('is-current');
+
+        panelControls.classList.remove('is-hidden');
+        let srcSegments = image.dataset.url.split('/');
+        panelImageName.innerHTML = srcSegments[srcSegments.length-1];
     };
 
     imagesWrapper.addEventListener('mousedown', (e) => {

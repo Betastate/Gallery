@@ -1,8 +1,8 @@
 :root {
   --color-text: #000;
   --color-base: #fff;
-  --color-primary: #fcef34;
-  --color-secondary: #3553de;
+  --color-primary: #130c54;
+  --color-secondary: #3080d6;
   --font-primary: 'Roboto', sans-serif;
   --font-secondary: 'Montserrat', sans-serif; }
 
@@ -190,6 +190,9 @@ object {
 .section.section-padding-bottom {
   padding-bottom: 5em; }
 
+.is-hidden {
+  display: none !important; }
+
 .row {
   margin: 0 auto;
   max-width: 85rem;
@@ -279,6 +282,23 @@ object {
 .gallery-panel .panel-image-preview img {
   width: 100%;
   height: auto; }
+
+.gallery-panel .panel-image-controls {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  margin-top: 0.5rem; }
+
+.gallery-panel .panel-image-name {
+  margin-right: 1rem; }
+
+.gallery-panel .panel-image-delete {
+  margin-left: auto;
+  color: #780a0a;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none; }
 
 .gallery-panel .panel-separator {
   width: 100%;
