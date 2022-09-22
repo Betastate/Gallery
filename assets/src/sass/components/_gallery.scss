@@ -4,4 +4,12 @@
     gap: 2.5rem;
     align-items: start;
     
+
+    @media(max-width: $breakpoint-small) {
+        grid-template-columns: 1fr;
+
+        .gallery-panel {
+            grid-row: 1/2;
+        }
+    }
 }

@@ -26,7 +26,17 @@
         }
     }
 
+    @media(max-width: $breakpoint-large) {
+        grid-template-columns: repeat(4, 1fr);
+    }
 
+    @media(max-width: $breakpoint-medium) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media(max-width: $breakpoint-mobile) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 
 .gallery-load-more {
