@@ -290,7 +290,8 @@ object {
   margin-top: 0.5rem; }
 
 .gallery-panel .panel-image-name {
-  margin-right: 1rem; }
+  margin-right: 1rem;
+  word-break: break-all; }
 
 .gallery-panel .panel-image-delete {
   margin-left: auto;

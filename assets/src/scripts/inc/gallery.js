@@ -13,7 +13,7 @@ const Gallery = () => {
 
     const panelControls = panel.querySelector('.panel-image-controls');
     const panelImageName = panelControls.querySelector('.panel-image-name');
-    const panelImageDelete = panelControls.querySelector('.panel-image-name');
+    const panelImageDelete = panelControls.querySelector('.panel-image-delete');
 
 
     const imagesInput = document.querySelector('#images-input');
@@ -31,7 +31,7 @@ const Gallery = () => {
 
         panelControls.classList.remove('is-hidden');
         let srcSegments = image.dataset.url.split('/');
-        panelImageName.innerHTML = srcSegments[srcSegments.length-1];
+        panelImageName.innerHTML = srcSegments[srcSegments.length - 1];
     };
 
     imagesWrapper.addEventListener('mousedown', (e) => {
@@ -41,6 +41,7 @@ const Gallery = () => {
             focusImage(clickedImage);
         }
     });
+
 
     //*******************   
     //Files upload handling
@@ -197,6 +198,35 @@ const Gallery = () => {
             fetchImages(imagesLimit, imagesOffset);
         });
     }
+
+    //*******************   
+    //Files delete handling
+    //******************* 
+    const deleteImage = () => {
+        let url = '/inc/delete.php';
+        let formData = new FormData();
+
+        let deletedImage = currentImage;
+        formData.append('id', deletedImage.dataset.id);
+
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then((response) => {
+                response.json().then(res => {
+                    
+                    deletedImage.remove();
+                    maxImages--;
+                    panelImage.src = '';
+                    panelControls.classList.add('is-hidden');
+
+                });
+            })
+            .catch((err) => { console.log(err); })
+    };
+    panelImageDelete.addEventListener('click', deleteImage);
+
 };
 
 window.addEventListener('load', () => {
