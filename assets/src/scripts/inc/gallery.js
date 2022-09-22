@@ -9,9 +9,13 @@ const Gallery = () => {
 
     const panel = document.querySelector('.gallery-panel');
     const panelImage = panel.querySelector('.panel-image-preview .content-image');
-    const imagesInput = document.querySelector('#images-input');
+    const panelLoading = panel.querySelector('.panel-load-images');
 
-    let currentImage = null
+
+    const imagesInput = document.querySelector('#images-input');
+    const galleryEmpty = document.querySelector('.gallery-empty');
+
+    let currentImage = null;
     const focusImage = (image) => {
         panelImage.src = image.dataset.url;
 
@@ -38,6 +42,8 @@ const Gallery = () => {
         let formData = new FormData();
 
         formData.append('file', file);
+        panelLoading.classList.remove('panel-load-images-loaded');
+        panelLoading.classList.add('panel-load-images-loading');
 
         fetch(url, {
             method: 'POST',
@@ -45,7 +51,11 @@ const Gallery = () => {
         })
             .then((response) => {
                 response.json().then(res => {
-                    console.log(res);
+                    if (!res.ok) {
+                        console.log(res.error + file.name);
+                        return;
+                    }
+                    handleFileUploaded();
                     //append new image
                     let newItem = document.createElement('DIV');
                     newItem.className = 'content-item';
@@ -58,12 +68,33 @@ const Gallery = () => {
                     imagesWrapperInner.prepend(newItem);
 
                     numImages++;
+
+                    if (galleryEmpty) {
+                        galleryEmpty.remove();
+                    }
                 });
             })
             .catch((err) => { /* Error. Inform the user */ })
     };
 
+    let filesUploaded = 0;
+    let filesToUpload = 0;
+    const filesUploadedElement = panel.querySelector('.load-loaded');
+    const filesToUploadElement = panel.querySelector('.load-total');
+    const handleFileUploaded = () => {
+        filesUploaded++;
+        filesUploadedElement.innerHTML = filesUploaded;
+        if (filesUploaded >= filesToUpload) {
+            panelLoading.classList.add('panel-load-images-loaded');
+            panelLoading.classList.remove('panel-load-images-loading');
+        }
+    };
+
     const handleFiles = (files) => {
+        filesToUploadElement.innerHTML = files.length;
+        filesToUpload = files.length;
+        filesUploaded = 0;
+
         ([...files]).forEach(file => uploadFile(file));
     };
 
@@ -114,12 +145,15 @@ const Gallery = () => {
         formData.append('limit', limit);
         formData.append('offset', offset);
 
+        loadMoreBtn.classList.add('button-disabled');
+
         fetch(url, {
             method: 'POST',
             body: formData
         })
             .then((response) => {
                 response.json().then(res => {
+                    loadMoreBtn.classList.remove('button-disabled');
 
                     if (!res.images) {
                         return;
@@ -146,13 +180,15 @@ const Gallery = () => {
 
                 });
             })
-            .catch((err) => { /* Error. Inform the user */ })
+            .catch((err) => { console.log(err); })
     };
 
-    loadMoreBtn.addEventListener('click', () => {
-        imagesOffset += imagesLimit;
-        fetchImages(imagesLimit, imagesOffset);
-    });
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+            imagesOffset += imagesLimit;
+            fetchImages(imagesLimit, imagesOffset);
+        });
+    }
 };
 
 window.addEventListener('load', () => {

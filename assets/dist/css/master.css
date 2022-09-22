@@ -248,6 +248,7 @@ object {
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   padding: 2.5rem 1.5rem;
   background: #dadada;
   border-radius: 0.25rem; }
@@ -275,9 +276,18 @@ object {
 .gallery-panel .panel-load-images {
   margin-bottom: 1.5rem; }
 
-.gallery-panel .panel-load-images .content-item {
-  display: flex;
-  align-items: center; }
+.gallery-panel .panel-load-images .panel-load-progress {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s linear;
+  transition-delay: 3s; }
+
+.gallery-panel .panel-load-images.panel-load-images-loading .panel-load-progress {
+  opacity: 1;
+  transition: none; }
+
+.gallery-panel .panel-load-images.panel-load-images-loaded .panel-load-progress {
+  color: #269327; }
 
 .gallery-panel:after {
   opacity: 0;
@@ -313,5 +323,9 @@ object {
           user-select: none;
   color: var(--color-base);
   background: var(--color-secondary); }
+
+.button.button-disabled {
+  opacity: 0.4;
+  pointer-events: none; }
 
 /*# sourceMappingURL=master.css.map */

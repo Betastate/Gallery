@@ -5,6 +5,8 @@ class FileManager{
     public $ok = false;
     public $image = '';
     public $thumbnail = '';
+    
+    public $error = '';
 
     function __construct(){
 
@@ -56,15 +58,18 @@ class FileManager{
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
         if (!in_array($imageFileType,$allowed_extensions)){
-            return 'ERROR: Extension not allowed';
+            $this->error = 'ERROR: Extension not allowed - ';
+            return false;
         }
 
         if (file_exists($target_file)) {
-            return 'ERROR: File already exists';
+            $this->error = 'ERROR: File already exists - ';
+            return false;
         }
 
-        if ($file["size"] > 10000000) {
-            return 'ERROR: File bigger than 5MB';
+        if ($file["size"] > 5242880) {
+            $this->error = 'ERROR: File bigger than 5MB - ';
+            return false;
         }
 
 

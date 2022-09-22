@@ -9,4 +9,9 @@
 
     color: var(--color-base);
     background: var(--color-secondary);
+
+    &.button-disabled {
+        opacity: 0.4;
+        pointer-events: none;
+    }
 }

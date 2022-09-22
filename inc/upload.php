@@ -14,4 +14,4 @@ if ($ok) {
     $db->execute("INSERT INTO images(url,thumbnail,time_added) VALUES('".$fileManager->image."','".$fileManager->thumbnail."',NOW());");
 }
 
-echo json_encode(array('response' => $fileManager->image, 'thumbnail' => $fileManager->thumbnail, 'ok' => $fileManager->ok));
+echo json_encode(array('response' => $fileManager->image, 'thumbnail' => $fileManager->thumbnail, 'ok' => $fileManager->ok, 'error' => $fileManager->error));
