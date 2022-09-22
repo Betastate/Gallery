@@ -8,10 +8,10 @@ include 'file_manager.php';
 $fileManager = new FileManager();
 
 
-$url = $fileManager->uploadFile($_FILES['file'],['jpg','JPG','jpeg','JPEG','png','PNG', 'gif', 'GIF']);
+$ok = $fileManager->uploadFile($_FILES['file'],['jpg','JPG','jpeg','JPEG','png','PNG', 'gif', 'GIF']);
 
-if ($fileManager->ok) {
-    $db->execute("INSERT INTO images(url,thumbnail,time_added) VALUES('".$url."','".$url."',NOW());");
+if ($ok) {
+    $db->execute("INSERT INTO images(url,thumbnail,time_added) VALUES('".$fileManager->image."','".$fileManager->thumbnail."',NOW());");
 }
 
-echo json_encode(array('response' => $url, 'ok' => $fileManager->ok));
+echo json_encode(array('response' => $fileManager->image, 'thumbnail' => $fileManager->thumbnail, 'ok' => $fileManager->ok));

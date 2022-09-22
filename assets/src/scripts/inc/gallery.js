@@ -45,14 +45,14 @@ const Gallery = () => {
         })
             .then((response) => {
                 response.json().then(res => {
-                    console.log(res.ok);
+                    console.log(res);
                     //append new image
                     let newItem = document.createElement('DIV');
                     newItem.className = 'content-item';
                     newItem.dataset.url = res.response;
 
                     let newImg = document.createElement('IMG')
-                    newImg.src = res.response;
+                    newImg.src = res.thumbnail;
 
                     newItem.appendChild(newImg);
                     imagesWrapperInner.prepend(newItem);
@@ -132,7 +132,7 @@ const Gallery = () => {
                         newItem.dataset.url = image.url;
 
                         let newImg = document.createElement('IMG')
-                        newImg.src = image.url;
+                        newImg.src = image.thumbnail;
 
                         newItem.appendChild(newImg);
                         imagesWrapperInner.appendChild(newItem);

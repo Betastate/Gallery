@@ -17,7 +17,7 @@ $imagesCount = $db->select("SELECT Count(id) as count FROM images;",true)['count
     <div class="gallery-images-inner">
         <?php foreach($images as $image) : ?>
             <div class="content-item" data-url="/<?php echo $image['url']; ?>">
-                <img src="/<?php echo $image['url']; ?>" alt="">
+                <img src="/<?php echo $image['thumbnail']; ?>" alt="">
             </div>
         <?php endforeach; ?>
         <!-- <div class="content-item" data-url="/assets/dist/images/1.JPG">
